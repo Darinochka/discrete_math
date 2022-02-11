@@ -1,0 +1,191 @@
+\chapter{Теория множеств}
+\section{Основные понятия}
+
+\textbf{Множество} - это совокупность каких-либо объектов. 
+Множества бывают конечными, бесконечными пустыми, счестными и бесчетными.
+
+Мощность множества: $|A|$
+
+Если между двумя множествами $A$ и $B$ можно установить взаимно-однозначное соответствие,
+тогда множества называются \textbf{равномощными}.
+\begin{equation}
+    |A| = |B|
+\end{equation}
+
+\textbf{Теорема Кантора}. Множество подмножеств любого множества, имеет мощность больше,
+чем само множество.
+
+Обычно в множество подмножеств входит пустое множество и само множество.
+
+Чтобы проверить теорему Кантора, рассмотрим конечное множество и рассмотрим множество
+подмножеств конечного множества из n элементов. Например, рассмотрим множество из 2-х
+элементов 
+\begin{equation*}
+    A = \{1, 2\} 
+\end{equation*}
+
+Множество подмножеств равно
+\begin{equation*}
+    A_2 = \{\emptyset, \{1\}, \{2\}, \{1, 2\}\}
+\end{equation*}
+
+Рассмотрим из множество 3-х элементов
+\begin{equation*}
+    B = \{1, 2, 3\} 
+\end{equation*}
+
+Множество подмножеств равно
+\begin{equation*}
+    B_3 = \{\emptyset, \{1\}, \{2\}, \{3\}, \{1, 2\}, \{1, 3\}, \{2, 3\}, \{1, 2, 3\}\}
+\end{equation*}
+
+Напрашивается закономерность, что
+\begin{equation}
+    |A_n| = 2^{|A|}
+\end{equation}
+где $|A_n|$ - мощность множества подможеств множества из n элементов
+
+Выведем так же несколько формул для мощность множества подмножеств:
+\begin{gather}
+    |A_n| = |A_{n-1}| + |A_{n-1}| = 2|A_{n-1}|\\
+    |A_n| = 2|A_{n-1}| = 2^{2}|A_{n-1}| = ... = 2^{n}|A_0| = 2^{n}
+\end{gather}
+
+Поставим вопрос: сколько будет подмножеств из n элементов содержащих k элементов? Отвечаю.
+$C^{k}_n$ - число подмножеств из k элементов.
+
+Стоит заметить, что
+\begin{equation}
+    \sum_{k=0}^{n} C^{k}_n = 2^{n}
+\end{equation}
+
+\section{Операции над множествами}
+
+Рассмотрим основные операции над множествами.
+
+\textbf{Объединение} 
+\begin{equation}
+    A \cup B = \{x: x \in A \cup x \in B\}
+\end{equation}
+
+\textbf{Пересечение} 
+\begin{equation}
+    A \cap B = \{x: x \in A \cap x \in B\}
+\end{equation}
+
+\textbf{Дополнение} 
+\begin{equation}
+    \overline A = \{x: x \notin A\}
+\end{equation}
+
+\textbf{Вычитание} 
+\begin{equation}
+    A \backslash B = \{x: x \in A \cap x \notin B\} = A \cap \overline B
+\end{equation}
+
+\textbf{Сумма} 
+\begin{equation}
+    A \oplus B = (A \backslash B) \cup (B \backslash A) = (A \cap \overline B) \cup (B \cap \overline A)
+\end{equation}
+
+
+\section{Законы теории множеств}
+
+\begin{enumerate}
+    \item \textbf{Коммутативность}
+        \begin{gather}
+            A \cup B = B \cup A \\
+            A \cap B = B \cap A
+        \end{gather}
+
+    \item \textbf{Ассоциативность}
+        \begin{gather}
+            A \cup (B \cup C) = (A \cup B) \cup C \\
+            A \cap (B \cap C) = (A \cap B) \cap C
+        \end{gather}
+
+    \item \textbf{Закон идентичности}
+        \begin{gather}
+            A \cup A = A \\
+            A \cap A = \emptyset
+        \end{gather}
+
+    \item \textbf{Закон дистрибутивности}
+        \begin{gather}
+            A \cup (B \cap C) = (A \cup B) \cap (A \cup C)\\
+            A \cap (B \cup C) = (A \cap B) \cup (A \cap C)
+        \end{gather}
+
+    \item \textbf{Закон поглощения}
+        \begin{gather}
+            A \cup (A \cap B) = A \\
+            A \cap (A \cup B) = A
+        \end{gather}
+
+    \item \textbf{Закон де-Моргана}
+        \begin{gather}
+            \overline{A \cup B} = \overline A \cap \overline B \\
+            \overline{A \cap B} = \overline A \cup \overline B
+        \end{gather}
+
+    \item \textbf{Закон нуля и единицы}
+        \begin{gather}
+            0 = \emptyset \\
+            1 = \mathbb{U}
+        \end{gather}
+
+    \item \textbf{Двойное отрицание}
+        \begin{equation}
+            \overline{\overline A} = A
+        \end{equation}
+
+    \item \textbf{Законы склеивания}
+        \begin{gather}
+            (A \cup B) \cap (A \cup \overline B) = A \\
+            (A \cap B) \cup (A \cap \overline B) = A 
+        \end{gather}
+\end{enumerate}
+
+Пример некоторых доказательств.
+
+\textbf{Закон поглощения}
+\begin{gather}
+    A \cup (A \cap B) = (A \cap 1) \cup (A \cap B) = A \cap (1 \cup B) = A \cap 1 = A \\
+    A \cap (A \cup B) = (A \cup 0) \cap (A \cup B) = A \cup (0 \cap B) = A \cup 0 = A
+\end{gather}
+
+\textbf{Закон скеливания}
+\begin{gather}
+    (A \cup B) \cap (A \cup \overline B) = A \cup (B \cap \overline B) = A \cup 0 = A \\
+    (A \cap B) \cup (A \cap \overline B) = A \cap (B \cup \overline B) = A \cap 1 = A
+\end{gather}
+
+Рассмотрим формулу дистрибутивности в следующем виде:
+\begin{equation}
+    A_1 \cap (B_1 \cap B_2 \cap ... \cap B_n) = (A_1 \cap B_1) \cup (A_1 \cap B_2) \cup ... \cup (A_1 \cap B_n)
+\end{equation}
+
+\textbf{Формула включения и исключения}
+\begin{gather}
+    |A \cup B| = |A| + |B| - |A \cap B| \\
+    |A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |A \cap C| - |B \cap C| + |A \cap B \cap C|
+\end{gather}
+
+Доказательства оставляю читателю :)
+
+\begin{task}
+    Сколько имеется целых чисел от 1 до 1000 которые не делятся на 3, 5, 7?
+
+    \begin{solution}
+        Возьмем $A_3$ - числа, делящиеся на 3, $A_5$ - числа, делящиеся на 5,
+        $A_7$ - числа, делящиеся на 7.
+    
+        При этом, $|A_3| = \frac{1000}{3}$ = 333, $|A_5| = \frac{1000}{5} = 200$, $|A_7| = \frac{1000}{7} = 142$
+        $|A_{15}| = \frac{1000}{3*5}$ = 66, $|A_{21}| = \frac{1000}{3*7}$ = 47, $|A_{35}| = \frac{1000}{7 * 5}$ = 28,
+        $|A_{105}| = \frac{1000}{3*5*7}$ = 9
+        \begin{equation*}
+            |A_3 \cup A_5 \cup A_7| = 333 + 200 + 142 - 66 - 47 - 28 + 9 = 543
+        \end{equation*}
+        Ответ: $1000 - 543 = 457$
+    \end{solution}
+\end{task}

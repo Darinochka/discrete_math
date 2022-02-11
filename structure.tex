@@ -1,0 +1,51 @@
+\usepackage[T2A]{fontenc} % Use 8-bit encoding that has 256 glyphs
+
+\usepackage[utf8]{inputenc} % Required for including letters with accents
+
+\usepackage[english,russian]{babel}
+\usepackage{cmap}
+
+\usepackage{indentfirst}
+\setlength{\parindent}{0pt}
+
+\usepackage{graphicx} % Required for including images
+\graphicspath{{Figures/}} % Set the default folder for images
+
+\usepackage{enumitem} % Required for manipulating the whitespace between and within lists
+
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+\usepackage{subfig} % Required for creating figures with multiple parts (subfigures)
+
+\usepackage{varioref} % More descriptive referencing
+
+\usepackage{assoccnt}
+
+\usepackage{xpatch}
+
+\usepackage{amsmath,amssymb,amsthm,amsfonts} % For including math equations, theorems, symbols, etc
+
+\theoremstyle{plain} % жирный заголовок, наклонный текст
+\newtheorem{thm}{Теорема}
+\newtheorem{lem}{Лемма}
+\newtheorem{utv}[thm]{Утверждение} %счетчик утверждений иcпользует счетчик теорем - [thm] после объявления имени
+\newtheorem{sle}{Следствие}[thm] %счетчик следствий подчинен счетчику теорем - [thm] в конце
+\newtheorem*{sle*}{Следствие} %звездочка после newtheorem убирает нумерацию
+\newtheorem*{remark*}{Замечение}
+
+\theoremstyle{definition}
+\newtheorem{task}{Задача}
+\newtheorem*{solution}{Решение}
+%----------------------------------------------------------------------------------------
+%	HYPERLINKS
+%---------------------------------------------------------------------------------------
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }

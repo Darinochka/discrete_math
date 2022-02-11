@@ -1,0 +1,135 @@
+\chapter{Элементы математической логики}
+\section{Основные понятия и операции}
+Пусть $A$ - множество и 
+\begin{equation}
+    a = 
+    \begin{cases}
+        1 &\text{$x \in A$}\\
+        \emptyset &\text{$x \notin A$}
+    \end{cases}
+\end{equation}
+
+Проведем аналогию из теории множеств в математическую логику:
+\begin{gather}
+    A \cup B \rightarrow a \lor b \\
+    A \cap B \rightarrow a \land b \\
+    \overline A \rightarrow \overline a \\
+    A - B \rightarrow a - b = a \land \overline b \\
+    A + b \rightarrow a + b = (a - b) \lor (b - a) = (a \land \overline b) \lor (b \land \overline a)
+\end{gather}
+
+\textbf{Дистрибутивность}
+\begin{gather}
+    a \lor (b \land c) = (a \lor b) \land (a \lor c) \\
+    a \land (b \lor c) = (a \land b) \lor (a \land c)
+\end{gather}
+
+\textbf{Поглощение}
+\begin{gather}
+    a \lor (a \land b) = a \\
+    a \land (a \lor b) = a
+\end{gather}
+
+\textbf{Законы де-Моргана}
+\begin{gather}
+    \overline{a \land b} = \overline a \lor \overline b \\
+    \overline{a \lor b} = \overline a \land \overline b
+\end{gather}
+
+\textbf{Законы склеивания}
+\begin{gather}
+    (a \lor b) \land (a \lor \overline b) = a \\
+    (a \land b) \lor (a \land \overline b) = a
+\end{gather}
+
+\textbf{Дополнительные логические операции}
+
+\begin{enumerate}
+    \item Стрелка Пирса:
+        \begin{equation}
+            a \downarrow b = \overline{a \lor b} = \overline a \land \overline b
+        \end{equation}
+    \item Штрих Шеффера:
+        \begin{equation}
+            a \mid b = \overline{a \land b} = \overline a \lor \overline b
+        \end{equation}
+    \item Импликация:
+        \begin{equation}
+            a \rightarrow b = \overline{a - b} = \overline{a \land \overline b} = \overline a \lor b
+        \end{equation}
+    \item Эквивалентность:
+        \begin{equation}
+            a \sim b = \overline{a + b} = \overline{(a \land \overline b) \lor (b \land \overline a)}
+        \end{equation}
+\end{enumerate}
+
+\textbf{Совершенная дизъюнктивная нормальная функция (СДНФ)}
+\begin{multline}
+    f(x_1, x_2, ..., x_n) = (\overline x_1 \land \overline x_2 \land ... \land \overline x_n \land f(0, 0, ..., 0)) \\
+    \lor (x_1 \land \overline x_2 \land ... \land \overline x_n \land f(1, 0, ..., 0)) \\
+    \lor (x_1 \land x_2 \land ... \land x_n \land f(1, 1, ..., 1))
+\end{multline}
+
+\textbf{Совершенная конъюктивная нормальная функция (СКНФ)}
+\begin{multline}
+    f(x_1, x_2, ..., x_n) = (\overline x_1 \lor \overline x_2 \lor ... \lor \overline x_n \lor f(1, 1, ..., 1)) \\
+    \land (x_1 \lor \overline x_2 \lor ... \lor \overline x_n \lor f(0, 1, ..., 1)) \\
+    \land (x_1 \lor x_2 \lor ... \lor x_n \lor f(0, 0, ..., 0))
+\end{multline}
+
+\section{Многочлен Жегалкина}
+Рассмотрим основные свойства
+
+\begin{gather}
+    \overline a = 1 + a \\
+    a \land b = ab \\
+    a \lor b = a + b + ab \\
+    a + a = 0 \\
+    a - b = a \land \overline b = a(1 + b) = a + ab \\
+    a(b + c) = ab + ac \\
+    a + b = b + a \\
+    a \downarrow b = \overline{a \lor b} = \overline a \land \overline b = (1 + a)(1 + b) = 1 + a + b + ab \\
+    a \mid b = \overline {a \land b} = 1 + ab \\
+    a \rightarrow b = \overline{a - b} = \overline{a \land \overline b} = 1 + a(1 + b) = 1 + a + ab \\
+    a \sim b = \overline{a + b} = 1 + a + b
+\end{gather}
+
+\textbf{Совершенная полиномиальная нормальная форма (СПНФ)}
+Получается из СДНФ заменой $\lor$ на +, $\overline x = 1 + x$ и $x_1 \land x_2 = x_1x_2$
+\begin{equation}
+    (1 + a)(1 + b)f(0, 0) + a(1 + b)f(1, 0) + (1 + a)bf(0, 1) + abf(1, 1)
+\end{equation}
+
+\section{Задачи}
+
+\begin{task}
+    Проверить $(a \mid b) \mid c = a \mid (b \mid c)$
+    \begin{solution}
+        \begin{gather*}
+            a \mid b = \overline {a \land b} = 1 + ab \\
+            (a \mid b) \mid c = (1 + ab) \mid c = 1 + c(1 + ab) = 1 + c + abc \\
+            a \mid (b \mid c) = a(1 + bc) = 1 + a(1 + bc) = 1 + a + abc
+        \end{gather*}
+        Ответ: неверное равенство.
+    \end{solution}
+\end{task}
+
+\begin{task}
+    Доказать $a \rightarrow (b \land c) = a \mid (b \mid c)$
+    \begin{solution}
+        \begin{equation*}
+            a \rightarrow (b \land c) = \overline a \lor (\overline{\overline{b \land c}}) = \overline a \lor \overline{b \mid c} = a \mid (b \mid c)
+        \end{equation*}
+    \end{solution}
+\end{task}
+
+\begin{task}
+    Доказать $a \downarrow ((b - a) \sim b) = 0$
+    \begin{solution}
+        \begin{multline*}
+            a \downarrow (1 + (b - a) + b) = a \downarrow (1 + b + ab + b) = a \downarrow (1 + ab) = \\
+            (1 + a)(1 + 1 + ab) = (1 + a)ab = \overline a ab = 0
+        \end{multline*}
+    \end{solution}
+\end{task}
+

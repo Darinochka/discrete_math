@@ -1,0 +1,162 @@
+\chapter{Отношения}
+\section{Основные понятия}
+Введем новые обозначения, аналогичные обозначениям в математической логике.
+
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}[c]{ | l | l | }
+        \hline
+        Отношения & Мат. логика \\ \hline
+        $=$ & $\sim$   \\ \hline
+        $\land$ & ,     \\ \hline
+        $\lor$ &  ;    \\ \hline
+        $\Rightarrow$ & $\to$ \\
+        \hline
+    \end{tabular}
+\end{table}
+
+Тавтология
+\begin{equation}
+    1 \to \overline P_1; \overline P_2; ... ; \overline P_{n-1}; \overline P_{n}; C
+\end{equation}
+
+Противоречие
+\begin{equation}
+    P_1, P_2, ..., P_{n-1}, P_n, \overline C \to 0
+\end{equation}
+
+\textbf{Отношения эквивалентности}
+\begin{itemize}
+    \item Рефлексивность
+    \begin{equation}
+        A \sim A
+    \end{equation}
+
+    \item Симметричность 
+    \begin{equation}
+        A \sim B \to B \sim A
+    \end{equation}
+
+    \item Транзитивность
+    \begin{equation}
+        A \sim B, B \sim C \to A \sim C
+    \end{equation}
+\end{itemize}
+
+\textbf{Отношения порядка}
+\begin{itemize}
+    \item Рефлексивность
+    \begin{equation}
+        A \to A
+    \end{equation}
+
+    \item Антисимметричность
+    \begin{equation}
+        A \Rightarrow B, то \overline B \Rightarrow \overline A
+    \end{equation}
+
+    \item Транзитивность
+    \begin{equation}
+        A \Rightarrow B, B \Rightarrow C, \text{то } A \Rightarrow C
+    \end{equation}
+\end{itemize}
+
+\section{Правила вывода клауз}
+Выведем несколько формул, далее из них сформируем правила.
+
+\begin{equation}\label{eq_clause}
+    A \to B = \overline A \lor B = \overline A; B
+\end{equation}
+
+Теперь воспользуемся этой формулой, чтобы вывести другие:
+\begin{gather}\label{eq_clauses}
+    \begin{aligned}
+        P_1, P_2, ..., P_n \Rightarrow C \\
+        P_1, P_2, ..., P_n \to C \\
+        \overline {P_1, P_2, ..., P_n} \lor C \\
+        \overline P_1 \lor \overline P_2 \lor ... \lor \overline P_n \lor C \\
+        \overline P_1 \lor \overline P_2 \lor ... \lor \overline P_{n-1} \lor (\overline P_n \lor C) \\
+        \overline {P_1 \land P_2 \land ... \land P_{n-1}} \lor (\overline P_n \lor C) \\
+        P_1, P_2, ..., P_{n-1} \Rightarrow (\overline P_n ; C) \\
+        P_1, P_2, ..., P_{n-1} \Rightarrow \overline P_n; C
+    \end{aligned}
+\end{gather}
+
+Так как далее пойдет немного сложноватая часть, я постараюсь пояснить.
+\begin{enumerate}
+    \item
+        \begin{equation}\label{eq_1}
+            A, A \to B \Rightarrow B
+        \end{equation}
+        Используем формулу \ref{eq_clause}, чтобы доказать
+        \begin{gather*}
+            A, \overline A; B \Rightarrow B \\
+            \emptyset; B \Rightarrow B
+        \end{gather*}
+    \item
+        \begin{equation}\label{eq_2}
+            A \Rightarrow B \to A
+        \end{equation}
+        Так же заменяем $B \to A$ формулой \ref{eq_clause},
+        а далее используем \ref{eq_clauses}, то есть из последнего получаем первое выражение
+        \begin{gather*}
+            A \Rightarrow \overline B; A \\
+            A, B \Rightarrow A
+        \end{gather*}
+    \item
+        \begin{equation}\label{eq_3}
+            A \to B, B \to C \Rightarrow A \to C
+        \end{equation}
+        Используя предыдущую формулу \ref{eq_2} переносим $A$ налево
+        \begin{equation*}
+            A, A \to B, B \to C \Rightarrow C
+        \end{equation*}
+        Первую часть заменяем согласно \ref{eq_1} и снова используем эту же формулу.
+        \begin{gather*}
+            B, B \to C \Rightarrow C \\
+            C \Rightarrow C
+        \end{gather*}
+        Доказано!
+\end{enumerate}
+
+\section{Задачи}
+Теперь будем доказывать несколько примеров.
+
+\begin{task}
+    \begin{gather*}
+        1 \Rightarrow (A \to B) \to ((C \to D) \to (A \lor C) \to (B \lor D)) \\
+        A \to B, C \to D, A \lor C \Rightarrow B \lor D \\
+        (A, A \to B) \lor (C, C \to D) \Rightarrow B \lor D
+    \end{gather*}
+\end{task}
+
+\begin{task}
+    \begin{gather*}
+        A \to C, A \lor B, B \to D, D \to C \Rightarrow C \\
+        A \to C, A \lor B, B \to C \Rightarrow C \\
+        (A, A \to C); (B, B \to C) \Rightarrow C \\
+        C \Rightarrow C
+    \end{gather*}
+\end{task}
+
+\begin{task}
+    \begin{gather*}
+        (A \land B) \lor (C \land D); \overline A \Rightarrow C \\
+        (A \land B) \lor (C \land D) \Rightarrow A; C \\
+        A \lor C \Rightarrow A; C
+    \end{gather*}
+\end{task}
+
+\begin{task}
+    \begin{gather*}
+        (A \to C) \to (\overline A \land B) \Rightarrow A \lor B \\
+        (\overline A \lor C) \to (\overline A \land B) \Rightarrow A \lor B \\
+        (\overline {\overline A \lor C}) \lor (\overline A \land B) \Rightarrow A \lor B \\
+        (A \land \overline C) \lor (\overline A \land B) \Rightarrow A \lor B \\
+        A \lor B \Rightarrow A \lor B
+    \end{gather*}
+\end{task}
+
+
+
