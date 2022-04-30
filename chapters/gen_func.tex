@@ -1,0 +1,151 @@
+\chapter{Производящие функции}
+\section{Производящие функции и их основные свойства}
+
+\begin{utv}
+    Пусть имеется последовательность чисел $a_1, a_2, ..., a_n, ...$
+    Тогда ее производящей функцией называется степенной ряд
+    \begin{equation}
+        A(x) = \sum_{n=0}^{\infty} a_nx^n
+    \end{equation}
+\end{utv}
+
+Требуем, чтобы данный ряд сходился хотя бы при малых $x$.
+
+Рассмотрим свойства производящих функций и некоторые их доказательства.
+
+
+\begin{enumerate}
+    \item \textbf{Линейность.}
+    Пусть $c_n = pa_n + qb_n$, $p, q = const$ Тогда 
+    \begin{equation}
+        \label{linear_p}
+        C(x) = pA(x) + qB(x)
+    \end{equation}
+    \textbf{Доказательство}
+    \begin{equation*}
+        pA(x) + qB(x) = \sum_{n = 0}^{\infty} (pa_n + qb_n)x^n = \\
+        \sum_{n=0}^{\infty} c_n x^n = C(x)
+    \end{equation*}
+
+    \item \textbf{Сдвиг вправо.}
+    Сдвиг начала последовательности вправо на i позиций.
+    Пусть $b_n = a_{n-i}, n \geq i$,  $b_n = 0, 0 \leq n \leq i-1$, тогда
+    \begin{equation}
+        \label{bias_right_p}
+        B(x) = x^iA(x)
+    \end{equation}
+    \textbf{Доказательство}
+    \begin{equation*}
+        B(x) = \sum_{n = 0}^{\infty} b_n x^n = \sum_{n = i}^{\infty} a_{n-i}x^n = \\
+        x^i \sum_{n = i}^{\infty} a_{n-i} x^{n-i} = x^{-i}\sum_{k = 0}^{\infty} a_k x^k = x^i A(x)
+    \end{equation*}
+    
+    \item \textbf{Сдвиг влево.}
+    Сдвиг начала последовательности влево на i позиций. Пусть последовательность чисел
+    $b_n$ и $a_n$ связаны: $b_n = a_{n+i}$ Тогда
+    \begin{equation}
+        \label{bias_left_p}
+        B(x) = x^{-i}(A(x) - \sum_{k = 0 }^{i - 1} a_k x^k)
+    \end{equation}
+    \textbf{Доказательство}
+    \begin{multline*}
+        B(x) = \sum_{n = 0}^{\infty} b_n x^n = \sum_{n = 0}^{\infty} a_{n+i} x^n =
+        x^{-i} \sum_{n = 0}^{\infty} a_{n+i}x^{n+i} = \\
+        x^{-i}(\sum_{k = 0}^{\infty} a_k x^k - 
+        \sum_{k = 0}^{i-1} a_k x^k) = x^{-i}(A(x) - \sum_{k = 0}^{i-1} a_k x^k)    
+    \end{multline*}
+
+    \item \textbf{Частичная сумма.}
+    Пусть $b_n = \sum_{k = 0}^{n} a_k$. Тогда
+    \begin{equation}
+        \label{partial_sum_p}
+        B(x) = \frac{A(x)}{1-x}
+    \end{equation}
+    \textbf{Доказательство}
+    Функция $\frac{1}{1-k}$ при $|x| < 1$ в ряд Маклорена
+    \begin{equation*}
+        \frac{1}{1 - x} = \sum_{k = 0}^{\infty} x^k
+    \end{equation*}
+    Поэтому в некоторой окрестности $x = 0$
+    \begin{equation*}
+        \frac{A(x)}{1-x} = \sum_{k = 0}^{\infty} a_k x^k \sum_{k = 0}^{\infty} x^k =
+        \sum_{n = 0}^{\infty} x^n \sum_{k = 0}^{\infty} a_k = \sum_{n = 0}^{\infty} b_n x^n = B(x)
+    \end{equation*}
+
+    \item \textbf{Дополнительная частичная сумма.}
+    Пусть $b_n = \sum_{k = n}^{\infty} a_k$. Тогда
+    \begin{equation}
+        \label{ext_partial_sum_p}
+        B(x) = \frac{A(1) - xA(x)}{1-x}
+    \end{equation}
+
+    \item \textbf{1 тип изменения масштаба.}
+    Пусть $b_n = na_n$. Тогда
+    \begin{equation}
+        \label{1_change_scale_p}
+        B(x) = xA'(x)
+    \end{equation}
+
+    \item \textbf{2 тип изменения масштаба.}
+    Пусть $b_n = \frac{a_n}{n + 1}$. Тогда
+    \begin{equation}
+        \label{2_change_scale_p}
+        B(x) = \frac{1}{x}\int_0^x A(x)dx
+    \end{equation}
+    
+    \item \textbf{Свертка.}
+    Пусть $C_n = \sum_{k = 0}^{n} a_k b_{n - k}$ Тогда 
+    \begin{equation}
+        \label{conv_p}
+        C(x) = A(x)B(x)
+    \end{equation}
+\end{enumerate}
+
+\section{Задачи}
+\begin{task}
+    $\frac{1}{1 - x} = \sum_{n = 0}^{\infty} x^n, |x| < 1$. 
+    Для последовательности $a_n = 1$ будет $A(x) = \frac{1}{1 - x}$.
+\end{task}
+
+\begin{task}
+    $\frac{1}{x} \ln{\frac{1}{1 - x}} = \sum_{n = 0}^\infty \frac{x^n}{n + 1}, |x| < 1$
+    Следовательно, производящей функцией для последовательности $a_n = \frac{1}{n + 1}$ будет
+    $A(x) = \frac{1}{n}\ln{\frac{1}{1 - x}}$
+\end{task}
+
+\begin{task}
+    Дана последовательность $a_n = q^n$. Найти ее производящую функцию.
+    \begin{solution}
+        \begin{equation*}
+            A(x) = \sum_{n = 0}^{\infty} q^n x^n = \sum_{n = 0}^{\infty} = (qx)^n = \frac{1}{1 - qx}
+        \end{equation*}
+    \end{solution}
+\end{task}
+
+\begin{task}
+    Дана последовательность $a_n = n$. Найти ее производящую функцию.
+    \begin{solution}
+        Запишем новую последовательность $b_n = 1$ и выразим $a_n$ через нее: $a_n = n b_n$.
+        Теперь можно воспользоваться свойством \ref{1_change_scale_p}:
+        \begin{gather*}
+            B(x) = \frac{1}{1-x} \\
+            A(x) = xB'(x) = \frac{x}{(1-x)^2}
+        \end{gather*}
+    \end{solution}
+\end{task}
+
+\begin{task}
+    Дана последовательность $b_n = n^2$. Найти ее производящую функцию.
+    \begin{solution}
+        Как и в прошлом примере введем новую последовательность $a_n = n$ и выразим через нее
+        $b_n$: $b_n = na_n$. Cнова дважды вспомним \ref{1_change_scale_p} используя результат
+        предыдущей задачи:
+        \begin{gather*}
+            B(x) = xA'(x) \\
+            A(x) = \frac{x}{(1 - x)^2} \\
+            B(x) = \frac{x + x^2}{(1 - x)^3}
+        \end{gather*}
+    \end{solution}
+\end{task}
+
+\section{Линейные рекуррентные соотношения}
