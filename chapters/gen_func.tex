@@ -412,3 +412,69 @@ $1 - c_1x - c_2x^2 - ... - c_k x^k$ на множители, определив 
         \end{equation*}
     \end{solution}
 \end{task}
+
+\begin{task}
+    Найти общее решение рекуррентного соотношения:
+    \begin{equation*}
+        u_{n+2} = u_{n+1} + u_n
+    \end{equation*}
+    \begin{solution}
+        Будем искать решение в виде $u_n = q^n$:
+        \begin{gather*}
+            q^{n+2} = q^{n+1} + q^n \\
+            q^2 - q - 1 = 0 \\
+            q_{1, 2} = \frac{1 \pm \sqrt{5}}{2}
+        \end{gather*}
+        Таким образом, общее решение имеет вид:
+        \begin{equation}
+            u_{\text{общ}} = C_1 \left(\frac{1 + \sqrt{5}}{2}\right) ^ n + C_2\left(\frac{1 - \sqrt{5}}{2}\right) ^ n
+        \end{equation}
+    \end{solution}
+\end{task}
+
+\begin{task}
+    Найти общее решение рекуррентного соотношения:
+    \begin{equation*}
+        a_{n+3} - 3a_{n+2} + 3a_{n+1} - a_n = 1 - 4^n
+    \end{equation*}
+    \begin{solution}
+        Ищем однородное:
+        \begin{gather*}
+            a_n = q^n \\
+            q^3 - 3q^2 + 3q - 1 = 0 \\
+            (q - 1)^k = (q - 1)^3 = 0 \\
+            q = 1
+        \end{gather*}
+        Кратность равна k = 3.
+        Тогда,
+        \begin{equation*}
+            U_{\text{одн}} = P(k-1)q^n = (A + Bn + Cn^2)1^n
+        \end{equation*}
+        Теперь найдем правую часть для 1:
+        \begin{gather*}
+            d_n = 1 \cdot 1^n \\
+            U_{\text{част 1}} = A n^3 1^n \\
+            A(n+3)^3 - 3A(n+2)^3 + 3A(n+1)^3 - An^3 = 1 \\
+            3^3A - 3A \cdot 2^3 + 3A = 1 \\
+            A(27 - 24 + 3) = 1 \\
+            6A = 1 \\
+            A = \frac{1}{6} \\
+            U_{\text{част 1}} = \frac{n^3}{6}
+        \end{gather*}
+        Далее для $4^n$:
+        \begin{gather*}
+            d_n = -4^n = (-1) 4^n \\
+            U_{\text{част 2}} = A \cdot 4^n \\
+            A \cdot 4^{n+3} - 3A \cdot 4^{n+2} + 3A \cdot 4^{n+1} - A \cdot 4^n = -4^n \\
+            A \cdot 4^3 - 3A \cdot 4^2 + 12 A - A = -1 \\
+            27A = -1 \\
+            A = \frac{-1}{27} \\
+            U_{\text{част 2}} = \frac{-4^n}{27}
+        \end{gather*}
+        Итог:
+        \begin{gather*}
+            U_{\text{общ}} = U_{\text{одн}} + U_{\text{част 1}} + U_{\text{част 2}} \\
+            U_{\text{общ}} = A + Bn + Cn^2 + \frac{n^3}{6} - \frac{4^n}{27}
+        \end{gather*}
+    \end{solution}
+\end{task}
