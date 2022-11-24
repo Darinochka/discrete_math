@@ -478,3 +478,55 @@ $1 - c_1x - c_2x^2 - ... - c_k x^k$ на множители, определив 
         \end{gather*}
     \end{solution}
 \end{task}
+
+\begin{task}
+    Решить рекуррентное соотношение:
+    \begin{gather*}
+        a_{n+2} + a_{n+1} - 2a_n = (-2)^nn \\
+        \text{если } n \geq 0, a_0=1, a_1=2
+    \end{gather*}
+
+    \begin{solution}
+        Ищем решение для однородного характеристического уравнения.
+        \begin{gather*}
+            q^2+q-2=0 \\
+            q_1 = -2 \\
+            q_2 = 1
+        \end{gather*}
+        \begin{equation*}
+            a_n = 1^n C_1 + (-2)^n C_2
+        \end{equation*}
+        Нахождение частичного решения:
+        \begin{equation*}
+            a_n = (-2)^n (C_3 + C_4)n
+        \end{equation*}
+
+        \begin{multline*}
+            (-2)^{n+2}(C_3(n+2)+C_4)(n+2) + (-2)^{n+1}(C(n+1)+C_4)(n+1) - \\
+            - 2 \cdot (-2)^n (C_3n + C_4)n = (-2)^nn 
+        \end{multline*}
+        \begin{gather*}
+            4(C_3(n+2)+C_4)(n+2)-2(C_3(n+1)+C_4)(n+1)-2(C_3n+C_4)n = n \\
+            12nC_3 + 14C_3 - n + 6C_4 = 0 \\
+            n(12C_3 - 1) + 14C_3 - 6C_4 = 0 \\
+            \begin{cases}
+                12С_3 - 1 = 0 \\
+                14С_3 + 6С_4=0 
+            \end{cases} \\
+            a_n = (-2)^n \left(\frac{n}{12} - \frac{7}{36}\right)n
+        \end{gather*}
+        \begin{gather*}
+            a_n = a_n\text{част} + a_n\text{однор} \\
+            a_n = C_1 + (-2)^nC_2 + (-2)^n\left(\frac{n}{12} - \frac{7}{36}\right)n \\
+            \begin{cases}
+                1 = C_1 + C_2 \\
+                2 = C_1 - 2C_2 - 2\left(\frac{1}{12}-\frac{7}{36}\right)
+            \end{cases} \\
+            \begin{cases}
+                C_1 = \frac{34}{27} \\
+                C_2 = \frac{-7}{27}
+            \end{cases} \\
+            a_n = \frac{34}{27}+(-2)^n -\frac{7}{27} + (-2)^n \left(\frac{n}{12}-\frac{7}{36}n\right)
+        \end{gather*}
+    \end{solution}
+\end{task}
