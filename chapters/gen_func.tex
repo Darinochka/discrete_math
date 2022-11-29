@@ -530,3 +530,70 @@ $1 - c_1x - c_2x^2 - ... - c_k x^k$ на множители, определив 
         \end{gather*}
     \end{solution}
 \end{task}
+
+\begin{task}
+    Решить рекуррентное соотношение:
+    \begin{gather*}
+        a_{n+2}+5a_{n+1}+6a_n=(-2)^4n \\
+        \text{если } a_0 = 1, a_1 = 1
+    \end{gather*}
+
+    \begin{solution}
+        1) Ищем решение для однородного уравнения:
+        \begin{gather*}
+            a_{n+2}+5a_{n+1}+6a_n=0 \\
+            k^2 + 5k + 6 = 0 \\
+            k = -3, k = -2
+        \end{gather*}
+        \begin{equation*}
+            a_n = (-3)^n C_1 - (-2)^n C_2
+        \end{equation*}
+        2) Ищем частное решение:
+        \begin{gather*}
+            a_n = (-2)^n (C_3n+C_4)n
+        \end{gather*}
+        \begin{multline*}
+            (-2)^{n+2}(C_3(n+2)+C_4)(n+2)+5(-2)^{n+1}(C_3(n+1)+C_4)(n+1)+ \\
+            + 6(-2)^n(C_3n+C_4)n = 2^nn
+        \end{multline*}
+        \begin{gather*}
+            4(nC_3+2C_3+C_4)(n+2)-10(C_3n+C_3+C_4)(n+1)+6n(C_3n+C_4)=n \\
+            \begin{cases}
+                8C_3+8C_3+4C_4-10C_3-10C_3-10C_4+6C_4=1 \\
+                16C_3+8C_4-10C_3-10C_4=0
+            \end{cases} \\
+            \begin{cases}
+                -4C_3=1     \\
+                6C_3-2C_4=0
+            \end{cases} \\
+            \begin{cases}
+                C_3=-\frac{1}{4} \\
+                C_4=-\frac{6}{8} = -\frac{3}{4}
+            \end{cases} \\
+            a_n\text{част}=(-2)^n(-\frac{n}{4}-\frac{3}{4})n
+        \end{gather*}
+        3)
+        \begin{gather*}
+            a_n=(-3)^nC_1 + (-2)^nC_2 + (-2)^n(-\frac{n}{4}-\frac{3}{4})n \\
+            \begin{cases}
+                a_0 = C_1 + C_2 = 1 \\
+                a_1 = -3C_1-2C_2+2=-1
+            \end{cases} \\
+            \begin{cases}
+                C_1 + C_2=1 \\
+                3C_1 + 2C_2=3
+            \end{cases} \\
+            \begin{cases}
+                C_2 = 0 \\
+                C_1 = 1
+            \end{cases} \\
+            a_n=(-3)^n+(-2)^n(-\frac{n}{4}-\frac{3}{4})n
+        \end{gather*}
+        Ответ:
+        \begin{equation*}
+            A(x) = \sum_{n=0}^{\inf}=a_nx^n=\sum_{n=0}{\inf}\left[(-3)^n+(-2)^n\left(-
+            \frac{n}{4}-\frac{3}{4}\right)n\right]x^n
+        \end{equation*}
+    \end{solution}
+\end{task}
+
