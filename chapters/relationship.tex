@@ -124,38 +124,85 @@
 Теперь будем доказывать несколько примеров.
 
 \begin{task}
-    \begin{gather*}
+    \begin{equation*}
         1 \Rightarrow (A \to B) \to ((C \to D) \to (A \lor C) \to (B \lor D)) \\
+    \end{equation*}
+    Используем формулу \ref{eq_clause} получаем: \\
+    \begin{equation*}
+        1 \Rightarrow \overline{(A \to B)};((C \to D) \to (A \lor C) \to (B \lor D))
+    \end{equation*}
+    Теперь, согласно \ref{eq_clauses}, переносим $\overline{A \to B}$ налево, убирая единицу,
+    так как это является тавтологией:
+    \begin{equation*}
+        A \to B \Rightarrow (C \to D) \to (A \lor C) \to (B \lor D)
+    \end{equation*}
+    По аналогичной логике переносим $C \to D, A \lor C$ налево:
+    \begin{equation*}
         A \to B, C \to D, A \lor C \Rightarrow B \lor D \\
+    \end{equation*}
+    В результате получаем:
+    \begin{equation*}
         (A, A \to B) \lor (C, C \to D) \Rightarrow B \lor D
-    \end{gather*}
+    \end{equation*}
+    И, вспомнив \ref{eq_1}:
+    \begin{equation*}
+        B \lor D \Rightarrow B \lor D
+    \end{equation*}
 \end{task}
 
 \begin{task}
-    \begin{gather*}
+    \begin{equation*}
         A \to C, A \lor B, B \to D, D \to C \Rightarrow C \\
-        A \to C, A \lor B, B \to C \Rightarrow C \\
-        (A, A \to C); (B, B \to C) \Rightarrow C \\
-        C \Rightarrow C
-    \end{gather*}
+    \end{equation*}
+    Используя правило транзитивности \ref{eq_3} приведем $B \to D, D \to C$ к $B \to C$:
+    \begin{equation*}
+        A \to C, A \lor B, B \to C \Rightarrow C
+    \end{equation*}
+    Далее:
+    \begin{equation*}
+        (A, A \to C) \lor (B, B \to C) \Rightarrow C 
+    \end{equation*}
+    И каждое из выражений $A, A \to C$ и $B, B \to C$, согласно \ref{eq_1}, изменяем:
+    \begin{equation*}
+        C \Rightarrow C        
+    \end{equation*}
 \end{task}
 
 \begin{task}
+    \begin{equation*}
+        (A \land B) \lor (C \land D); \overline A \Rightarrow C
+    \end{equation*}
+    Следуя формулам из \ref{eq_clauses}, переносим A вправо с отрицанием:
     \begin{gather*}
-        (A \land B) \lor (C \land D); \overline A \Rightarrow C \\
         (A \land B) \lor (C \land D) \Rightarrow A; C \\
-        A \lor C \Rightarrow A; C
+        A, B \lor C, D \Rightarrow A; C
+    \end{gather*}
+    Так как $A, B \Rightarrow A$ и $C, D \Rightarrow C$:
+    \begin{gather*}
+        A \lor C \Rightarrow A; C \\
+        A; C \Rightarrow A; C
     \end{gather*}
 \end{task}
 
 \begin{task}
+    \begin{equation*}
+        (A \to C) \to (\overline A \land B) \Rightarrow A \lor B
+    \end{equation*}
+    Пользуясь \ref{eq_clause} преобразуем $A \to C$, далее аналогично преобрзуем новое выражение
+    тоже пользуясь этой же формулой:
     \begin{gather*}
-        (A \to C) \to (\overline A \land B) \Rightarrow A \lor B \\
         (\overline A \lor C) \to (\overline A \land B) \Rightarrow A \lor B \\
-        (\overline {\overline A \lor C}) \lor (\overline A \land B) \Rightarrow A \lor B \\
-        (A \land \overline C) \lor (\overline A \land B) \Rightarrow A \lor B \\
-        A \lor B \Rightarrow A \lor B
+        (\overline {\overline A \lor C}) \lor (\overline A \land B) \Rightarrow A \lor B
     \end{gather*}
+    Изменив первое выражение по правилу де Моргана, получаем:
+    \begin{gather*}
+        (A \land \overline C) \lor (\overline A \land B) \Rightarrow A \lor B \\
+        (A, \overline C) \lor (\overline A, B) \Rightarrow A \lor B
+    \end{gather*}
+    И, так как $A, \overline C \Rightarrow A$ и $\overline A, B \Rightarrow B$, меняем:
+    \begin{equation*}
+        A \lor B \Rightarrow A \lor B
+    \end{equation*}
 \end{task}
 
 
